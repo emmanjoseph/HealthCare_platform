@@ -10,8 +10,8 @@ const Home = () => {
     <div
     className='flex h-screen max-h-screen'>
       {/* verification modal OTP */}
-    <section className="remove-scrollbar container my-auto">
-      <div className="subcontainer max-w-[496px]">
+    <section className="remove-scrollbar container">
+      <div className="sub-container max-w-[496px]">
         <Image src='/assets/icons/logo-full.svg'
          alt='logo'
           width={1000} 

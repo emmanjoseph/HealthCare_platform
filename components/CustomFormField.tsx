@@ -11,7 +11,9 @@ import 'react-phone-number-input/style.css'
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { Select } from './ui/select'
+import { Select, SelectContent, SelectTrigger, SelectValue } from './ui/select'
+import { Textarea } from './ui/textarea'
+import { Checkbox } from './ui/checkbox'
 
 interface CustomProps {
     control: Control<any>,
@@ -77,9 +79,52 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
             </FormControl>
         </div>
     )
-    case FormFieldType.SELECT:
+    case FormFieldType.SKELETON:
         return renderSkeleton ? renderSkeleton
         (field) : null
+
+    case FormFieldType.SELECT:
+            return (
+                <FormControl>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                        {/* This should only contain one direct child */}
+                        <SelectTrigger className='shad-select-trigger'>
+                        <SelectValue placeholder={placeholder} />
+                        </SelectTrigger>
+                       
+                        <SelectContent className='shad-select-content'>
+                            {React.Children.count(props.children) === 1 ? props.children : <>{props.children}</>}
+                        </SelectContent>
+                    </Select>
+                </FormControl>
+            );
+     case FormFieldType.TEXTAREA:
+        return (
+            <FormControl>
+                <Textarea
+                {...field}
+                placeholder={placeholder}
+                className='shad-textArea resize-none'
+                disabled={props.disabled}
+                />
+            </FormControl>
+        )       
+
+    case FormFieldType.CHECKBOX:
+        return(
+            <FormControl>
+                <div className="flex items-center gap-4">
+                    <Checkbox
+                    id={props.name}
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    />
+                <label htmlFor={props.name}
+                className='checkbox-label'
+                >{props.label}</label>
+                </div>
+            </FormControl>
+        )
 
         default:
             return null

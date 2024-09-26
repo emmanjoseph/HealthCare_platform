@@ -11,8 +11,8 @@ const Register = async ({params:{userId}}:SearchParamProps) => {
     <div
     className='flex h-screen max-h-screen'>
    
-    <section className="remove-scrollbar container my-auto">
-      <div className="subcontainer max-w-[496px]">
+    <section className="remove-scrollbar container flex-1 flex-col py-12">
+      <div className="sub-container max-w-[860px]">
         <Image src='/assets/icons/logo-full.svg'
          alt='logo'
           width={1000} 
@@ -21,16 +21,11 @@ const Register = async ({params:{userId}}:SearchParamProps) => {
         />
 
         <RegisterForm user={user}/>
-        <div className="text-14-regular mt-20 flex justify-between">
-       <p className="justify-items-end text-dark-600 xl:text-left">
+      
+       <p className=" my-5 text-[13px] justify-items-end text-dark-600 xl:text-left">
        &copy; 2024 Carepulse
        </p>
-       <Link href='/?admin=true'
-       className='text-green-500'
-       >
-        Admin
-       </Link>
-        </div>
+      
       </div>
     </section>
     <Image src='/assets/images/register-img.png' alt=''
