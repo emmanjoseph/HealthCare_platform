@@ -75,6 +75,8 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
                     showTimeSelect={showTimeSelect ?? false}
                     wrapperClassName = 'date-picker'
                     timeCaption="Time"  // Optional: adds caption to time section
+                    placeholderText={placeholder}
+                    
                 />
             </FormControl>
         </div>

@@ -1,8 +1,7 @@
 
-import RegisterForm from '@/components/Forms/RegisterForm'
+import RegisterForm from '../../../../components/Forms/RegisterForm'
 import { getUser } from '@/lib/actions/patients.actions'
 import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
 
 const Register = async ({params:{userId}}:SearchParamProps) => {
