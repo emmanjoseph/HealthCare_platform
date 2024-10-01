@@ -11,9 +11,19 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from './ui/button'
 import AppointmentForm from './Forms/AppointmentForm'
+import { Appointment } from '@/types/appwrite.types'
 
 
-const AppointmentModal = ({type}:{type:'schedule' | 'cancel'}) => {
+const AppointmentModal = ({
+  type,
+  patientId,
+  userId,
+  appointment
+}:{type:'schedule' | 'cancel',
+  patientId:string,
+  userId:string,
+  appointment:Appointment,
+}) => {
     const [open,setOpen]=useState(false)
   return (
    
@@ -31,8 +41,11 @@ const AppointmentModal = ({type}:{type:'schedule' | 'cancel'}) => {
       </DialogDescription>
     </DialogHeader>
     <AppointmentForm
-    type={}
-    on
+    userId={userId}
+    patientId={patientId}
+    appointment={appointment}
+    type={type}
+    setOpen = {setOpen}
     />
   </DialogContent>
 </Dialog>

@@ -4,6 +4,7 @@ import { ID, Query } from "node-appwrite";
 import { databases } from "../appwrite.config";
 import { parseStringify } from "../utils";
 import { Appointment } from "@/types/appwrite.types";
+import { revalidatePath } from "next/cache";
 
 const DATABASE_ID = '66f3c60100302ebb96f1';
 const APPOINTMENT_COLLECTION_ID = '66f3c705002c3838f0ea';
@@ -77,3 +78,26 @@ export const getRecentAppoinmentList = async () => {
         throw new Error('Failed to fetch recent appointments');
     }
 };
+
+export const updateAppointment = async ({appointmentId,userId,appointment,type}:UpdateAppointmentParams)=>{
+try {
+    const updateAppointment = await databases.updateDocument(
+        DATABASE_ID,
+        APPOINTMENT_COLLECTION_ID,
+        appointmentId,
+        appointment
+    )
+
+    if (!updateAppointment) {
+        throw Error('Appointment not found')
+    }
+
+    // sms notification
+
+    revalidatePath('/admin')
+    return parseStringify(updateAppointment)
+} catch (error) {
+    console.log(error);
+    
+}
+}

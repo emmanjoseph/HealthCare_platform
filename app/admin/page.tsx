@@ -1,7 +1,7 @@
 
 import {DataTable} from '@/components/DataTable'
 import StatCard from '@/components/StatCard'
-import {columns, Payment} from '@/components/table/columns'
+import {columns} from '@/components/table/columns'
 import { getRecentAppoinmentList } from '@/lib/actions/appointment.actions'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -67,8 +67,6 @@ const Admin = async () => {
             />
           
         </main>
-
-        
     </div>
   )
 }

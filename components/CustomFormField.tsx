@@ -68,16 +68,20 @@ const RenderField = ({ field, props }: { field: any, props: CustomProps }) => {
     return (
         <div className='flex items-center rounded-md border border-dark-500 bg-dark-400 p-2'>
             <FormControl>
-                <DatePicker
-                    selected={field.value}
-                    onChange={(date) => field.onChange(date)}
-                    dateFormat={dateformat ?? (showTimeSelect ? 'MM/dd/yyyy h:mm aa' : 'MM/dd/yyyy')}
-                    showTimeSelect={showTimeSelect ?? false}
-                    wrapperClassName = 'date-picker'
-                    timeCaption="Time"  // Optional: adds caption to time section
-                    placeholderText={placeholder}
-                    
-                />
+            <DatePicker
+  selected={field.value || new Date()}
+  onChange={(date) => {
+    console.log("Selected date:", date);  // Log selected date
+    field.onChange(date);
+  }}
+  dateFormat={dateformat ?? (showTimeSelect ? 'MM/dd/yyyy h:mm aa' : 'MM/dd/yyyy')}
+  showTimeSelect={showTimeSelect ?? false}
+  wrapperClassName="date-picker"
+  timeCaption="Time"
+  placeholderText={placeholder}
+/>
+
+
             </FormControl>
         </div>
     )
