@@ -2,7 +2,7 @@
 import {DataTable} from '@/components/DataTable'
 import StatCard from '@/components/StatCard'
 import {columns} from '@/components/table/columns'
-import { getRecentAppoinmentList } from '@/lib/actions/appointment.actions'
+import { getRecentAppointmentList } from '@/lib/actions/appointment.actions'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -12,7 +12,9 @@ import React from 'react'
 
 const Admin = async () => {
  
-    const appointments = await getRecentAppoinmentList()
+    const appointments = await getRecentAppointmentList()
+    // console.log(appointments);
+    
    
 
   return (

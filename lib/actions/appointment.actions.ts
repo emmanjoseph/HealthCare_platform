@@ -41,12 +41,15 @@ export const getAppointment = async (appointmentId: string) => {
 };
 
 // Get Recent Appointment List with Counts
-export const getRecentAppoinmentList = async () => {
+export const getRecentAppointmentList = async () => {
     try {
         const appointments = await databases.listDocuments(
             DATABASE_ID,
             APPOINTMENT_COLLECTION_ID,
-            [Query.orderDesc('$createdAt')]
+            [
+                Query.orderDesc('$createdAt'),
+                Query.limit(100) // Set a high limit to fetch more documents
+            ]
         );
 
         const initialCounts = {    
@@ -66,18 +69,19 @@ export const getRecentAppoinmentList = async () => {
             return acc;
         }, initialCounts);
 
-        const data ={
+        const data = {
             totalCount: appointments.total,
             ...counts,
-            documents:appointments.documents
-        }
+            documents: appointments.documents
+        };
 
         return parseStringify(data);
     } catch (error) {
-        console.error('Error fetching recent appointments:', error);
+        console.error('Error fetching recent appointments:', error.message || error);
         throw new Error('Failed to fetch recent appointments');
     }
 };
+
 
 export const updateAppointment = async ({appointmentId,userId,appointment,type}:UpdateAppointmentParams)=>{
 try {
